@@ -60,19 +60,13 @@ pipeline {
               // failed, record the test results and archive the jar file.
               success {
                   echo 'Successfully Cloned Repository'
-
-                  mail  to: 'aniwon0208@gmail.com',
-                        subject: "Deploy Frontend Success",
-                        body: "Successfully deployed frontend!"
-
+                                 
               }
 
               failure {
                   echo 'I failed :('
 
-                  mail  to: 'aniwon0208@gmail.com',
-                        subject: "Failed Pipelinee",
-                        body: "Something is wrong with deploy frontend"
+                  
               }
           }
         }
