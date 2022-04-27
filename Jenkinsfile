@@ -21,9 +21,9 @@ pipeline {
             steps {
                 echo 'Clonning Repository'
 
-                git url: 'https://github.com/frontalnh/temp.git',
-                    branch: 'master',
-                    credentialsId: 'jenkinsgit'
+                git url: 'https://github.com/78won96/jenkins.git',
+                    branch: 'main',
+                    credentialsId: 'jenkins_token_github'
             }
 
             post {
@@ -50,7 +50,7 @@ pipeline {
             // 프론트엔드 디렉토리의 정적파일들을 S3 에 올림, 이 전에 반드시 EC2 instance profile 을 등록해야함.
             dir ('./website'){
                 sh '''
-                aws s3 sync ./ s3://namhoontest
+                aws s3 sync ./ s3://jenkins-test-jwlee
                 '''
             }
           }
@@ -61,7 +61,7 @@ pipeline {
               success {
                   echo 'Successfully Cloned Repository'
 
-                  mail  to: 'frontalnh@gmail.com',
+                  mail  to: 'juwon.lee@u-infra.com',
                         subject: "Deploy Frontend Success",
                         body: "Successfully deployed frontend!"
 
