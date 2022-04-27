@@ -70,7 +70,7 @@ pipeline {
               failure {
                   echo 'I failed :('
 
-                  mail  to: 'frontalnh@gmail.com',
+                  mail  to: 'juwon.lee@u-infra.com',
                         subject: "Failed Pipelinee",
                         body: "Something is wrong with deploy frontend"
               }
