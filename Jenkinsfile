@@ -60,7 +60,7 @@ pipeline {
               // failed, record the test results and archive the jar file.
               success {
                   echo 'Successfully Cloned Repository'
-                                 
+
               }
 
               failure {
@@ -123,6 +123,23 @@ pipeline {
             failure {
               error 'This pipeline stops here...'
             }
+          }
+        }
+
+        stage('Scan') {
+            steps {
+                // Scan the image
+                prismaCloudScanImage ca: '',
+                cert: '',
+                dockerAddress: 'unix:///var/run/docker.sock',
+                image: 'test/test-image*',
+                key: '',
+                logLevel: 'info',
+                podmanPath: '',
+                project: '',
+                resultsFile: 'prisma-cloud-scan-results.json',
+                ignoreImageBuildTime:true
+            } 
           }
         }
         
